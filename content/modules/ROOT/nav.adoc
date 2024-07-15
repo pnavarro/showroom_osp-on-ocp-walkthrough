@@ -1,7 +1,6 @@
-* xref:module-01.adoc[1. RPM Native Container]
-** xref:module-01.adoc#repositories[Repositories]
-** xref:module-01.adoc#software[Software]
-
-* xref:module-02.adoc[2. GitHub Sourced Container]
-** xref:module-02.adoc#prerequisites[Install Prerequisites]
-** xref:module-02.adoc#container[Enable Container]
+* xref:openshift-walkthrough.adoc[Navigate the OpenShift installation]
+* xref:openstack-operators.adoc[Navigate the OpenStack Operators]
+* xref:network-isolation.adoc[Naviate the network isolation configuration]
+* xref:control-plane.adoc[Navigate the Control Plane]
+* xref:data-plane.adoc[Navigate the Data plane]
+* xref:access.adoc[Access OpenStack]

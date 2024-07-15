@@ -1,0 +1,85 @@
+= Navigate the OpenStack Operators
+
+The Red Hat OpenStack Services on OpenShift (RHOSO) IaaS services are implemented as a collection of Operators running on a Red Hat OpenShift Container Platform (RHOCP) cluster. These Operators manage the compute, storage, networking, and other services for your RHOSO cloud.
+
+The OpenStack Operator (openstack-operator) installs all the required RHOSO service Operators and is the interface that you use to manage those Operators. 
+
+The basic architecture of a Red Hat OpenStack Services on OpenShift (RHOSO) environment includes the following features:
+
+**Container-native application delivery**: RHOSO is delivered by using a container-native approach that spans the Red Hat OpenShift Container Platform (RHOCP) and RHEL platforms to deliver a container-native RHOSO deployment.
+**RHOCP-hosted services**: RHOCP hosts infrastructure services and RHOSO controller services by using RHOCP Operators to provide lifecycle management.
+**Ansible-managed RHEL-hosted service**: RHOSO workloads run on RHEL nodes that are managed by a dedicated DataPlane Operator. The DataPlane Operator runs Ansible jobs to configure the RHEL data plane nodes, such as the Compute nodes. RHOCP manages provisioning, DNS, and configuration management.
+**Installer-provisioned infrastructure**: The RHOSO installer enables installer-provisioned infrastructure that uses RHOSO bare-metal machine management to provision the Compute nodes for the RHOSO cloud.
+**User-provisioned infrastructure**: If you have your own machine ingest and provisioning workflow, you can use the RHOSO pre-provisioned model to add your pre-provisioned hardware into your RHOSO environment, while receiving the benefits of a container-native workflow.
+**Hosted RHOSO client**: RHOSO provides a host openstackclient pod that is preconfigured with administrator access to the deployed RHOSO environment.
+
+. Review the pods in the **openstack-operators** namespace:
++
+[source,bash,role=execute]
+----
+oc get pods -n openstack-operators
+----
+
+. If you run:
++
+[source, bash,role=execute]
+----
+oc get pods -n openstack-operators --sort-by=.metadata.creationTimestamp
+----
++
+You should see a list of completed pods and then the running openstack services pods.
+It should look like:
++
+.Sample Output
+----
+(...)
+[root@ocp4-bastion ~]# oc get pods -n openstack-operators
+NAME                                                              READY   STATUS      RESTARTS   AGE
+0aa4542351b81c759f5d66d2a27bb21c6e8c6ad182d5e0bc5b26143d47cwqln   0/1     Completed   0          48m
+0c40fcce6a29f383cda66e9e9de41fdbe4494f3db489c33c0d8a452de0mrx5d   0/1     Completed   0          48m
+0cb7980427badb1a09887f737b6e7926293c96df07677613cd4a3e5a09hpcfj   0/1     Completed   0          48m
+0d5e8b8ece0e0a19b70bbacbe14ecf17e61d8dee28fc2f0f957129d790c6bdf   0/1     Completed   0          48m
+1d370dd1211d9f8cd7941e6027f281bf64a935395acf9fa989f2a4727e7tqt9   0/1     Completed   0          48m
+3f5d6b27b81f5083069a18b338ed754ff082fed8db5aa226f5085721a8v6szp   0/1     Completed   0          48m
+663e6d8ad4f196bf54db8672da19bb2f5c813658a2be92f0d49bffb614rvtqk   0/1     Completed   0          48m
+6bd41423d2e2562598f62eb8adeb83df97de37905b4bd9c16523bf0a07whrnv   0/1     Completed   0          48m
+71eb50d904d797d5aaac6402dcb8985b10f9ab63b8216f03c0e63e2b98ft2vg   0/1     Completed   0          48m
+7c94bb3b02ca9042c5f6e14c65952ef3c67cca033056c88c5e9b26384bgdcng   0/1     Completed   0          48m
+7c9fad0d480e0c828983facb45c31ed2e155e882cecd508872abb69cc75bgzr   0/1     Completed   0          48m
+83548d653efd60937228b24b616096095d1a95e6336917c9d47e67e9ba5qbpj   0/1     Completed   0          48m
+87b653f8f46ca35a737a68f84d38e68072ac4175bc92e03f3186710447d2dwb   0/1     Completed   0          48m
+b49dd4a931e45136a1939039b80f61c625439b182b80c8da49ceaac6962j84g   0/1     Completed   0          48m
+barbican-operator-controller-manager-68b4f87dc9-g7p49             2/2     Running     0          47m
+bb2c8487079b923caf36d46d512857bdad1766f5c1da648718aca2914a9mhs5   0/1     Completed   0          48m
+bf4a22f9f279a3cb9fbb8203b93fc5afef3c4139a7047cdfdefa76a9f6wfrr4   0/1     Completed   0          48m
+c72e9eaf2cbf7d5d56afeceee16eb0a22202dd1b57d8e17d13d3f315b0n4w95   0/1     Completed   0          48m
+cinder-operator-controller-manager-67697ccd75-7wwpg               2/2     Running     0          46m
+d99ee5e400f0504e500dab0c14e8a0c64ef081923513a2e1d36b0012bbtvfg8   0/1     Completed   0          48m
+dataplane-operator-controller-manager-7876cd486-frcx4             2/2     Running     0          46m
+ddb73e2f52e24b33c181cfd4e79d641b53fc4d05d25a1c4b2023fb29b6fhzfg   0/1     Completed   0          48m
+designate-operator-controller-manager-799b8f765b-wb4s2            2/2     Running     0          47m
+f6f52fde99b131818d1d7f0d389d5fea6e7e59bf76cf2cc7fe59979c5dl5zdr   0/1     Completed   0          48m
+fa70a9bfe037af640412c3d89f5c5a1c436e067203446c86880d43de9bhkkz7   0/1     Completed   0          48m
+fe9e1162edff42ab6306d5db9a347c5ba1210b0ad753db597a6cd18acc7chzq   0/1     Completed   0          48m
+glance-operator-controller-manager-768bc74496-f2blh               2/2     Running     0          47m
+heat-operator-controller-manager-5db4b66b87-8gjg9                 2/2     Running     0          47m
+horizon-operator-controller-manager-548cf8f6df-4nnnr              2/2     Running     0          47m
+infra-operator-controller-manager-7c9fb555b6-sfzhp                2/2     Running     0          46m
+ironic-operator-controller-manager-54964b9f7d-zpw6r               2/2     Running     0          48m
+keystone-operator-controller-manager-5f645bfbdc-wjmcn             2/2     Running     0          47m
+manila-operator-controller-manager-6cf575bc8d-68cd4               2/2     Running     0          47m
+mariadb-operator-controller-manager-7b9776b9db-52jfk              2/2     Running     0          46m
+neutron-operator-controller-manager-5864f597f4-7lrbp              2/2     Running     0          48m
+nova-operator-controller-manager-7fd8665f59-j8kks                 2/2     Running     0          48m
+octavia-operator-controller-manager-7c9589cbc8-xwctr              2/2     Running     0          47m
+openstack-ansibleee-operator-controller-manager-6bc6dcd69-hccz5   2/2     Running     0          47m
+openstack-baremetal-operator-controller-manager-746dd88d6bkxwxh   2/2     Running     0          46m
+openstack-operator-controller-manager-bd994f976-dgswt             2/2     Running     0          46m
+openstack-operator-index-df4z5                                    1/1     Running     0          49m
+ovn-operator-controller-manager-7fdb6dc56c-wj8m6                  2/2     Running     0          46m
+placement-operator-controller-manager-8bff6b56b-h2twl             2/2     Running     0          48m
+rabbitmq-cluster-operator-668d7786c5-6xm98                        1/1     Running     0          47m
+swift-operator-controller-manager-7c7b9f7b78-f8nkf                2/2     Running     0          47m
+telemetry-operator-controller-manager-5b996c956c-676xg            2/2     Running     0          47m
+(...)
+----
