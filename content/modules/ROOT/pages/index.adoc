@@ -5,14 +5,15 @@ These instructions will guide you through the installation of the next generatio
 
 In this lab, you will use the following infrastructure:
 
-* A 3 OCP controller + 3 OCP workers nodes 4.13 OCP cluster
-* A RHEL 9.3 bastion host dataplane
+* A 3 OCP controller + 3 OCP workers nodes 4.15 OCP cluster
+* A bastion host to access to the OCP environment
+* A RHEL 9.4 virtualised compute host
 
 In this lab, you will cover the following topics:
 
 * xref:openshift-walkthrough.adoc[Navigate the OpenShift installation]
 * xref:openstack-operators.adoc[Navigate the OpenStack Operators]
-* xref:network-isolation.adoc[Naviate the network isolation configuration]
+* xref:network-isolation.adoc[Navigate the network isolation configuration]
 * xref:control-plane.adoc[Navigate the Control Plane]
 * xref:data-plane.adoc[Navigate the Data plane]
 * xref:access.adoc[Access OpenStack]
