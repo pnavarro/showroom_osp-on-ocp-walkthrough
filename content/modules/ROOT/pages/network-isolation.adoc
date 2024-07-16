@@ -1,5 +1,7 @@
 == Checking the RHOCP for RHOSP Network Isolation
 
+The following diagrams shows the network topology of the lab environment:
+
 image::network.png[networking,55%,55%]
 
 NodeNetworkConfigurationPolicy (*nncp*) resource is used to configure RHOSO openstack services network isolation: 

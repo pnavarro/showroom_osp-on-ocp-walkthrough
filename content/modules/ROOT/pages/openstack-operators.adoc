@@ -6,12 +6,12 @@ The OpenStack Operator (openstack-operator) installs all the required RHOSO serv
 
 The basic architecture of a Red Hat OpenStack Services on OpenShift (RHOSO) environment includes the following features:
 
-**Container-native application delivery**: RHOSO is delivered by using a container-native approach that spans the Red Hat OpenShift Container Platform (RHOCP) and RHEL platforms to deliver a container-native RHOSO deployment.
-**RHOCP-hosted services**: RHOCP hosts infrastructure services and RHOSO controller services by using RHOCP Operators to provide lifecycle management.
-**Ansible-managed RHEL-hosted service**: RHOSO workloads run on RHEL nodes that are managed by a dedicated DataPlane Operator. The DataPlane Operator runs Ansible jobs to configure the RHEL data plane nodes, such as the Compute nodes. RHOCP manages provisioning, DNS, and configuration management.
-**Installer-provisioned infrastructure**: The RHOSO installer enables installer-provisioned infrastructure that uses RHOSO bare-metal machine management to provision the Compute nodes for the RHOSO cloud.
-**User-provisioned infrastructure**: If you have your own machine ingest and provisioning workflow, you can use the RHOSO pre-provisioned model to add your pre-provisioned hardware into your RHOSO environment, while receiving the benefits of a container-native workflow.
-**Hosted RHOSO client**: RHOSO provides a host openstackclient pod that is preconfigured with administrator access to the deployed RHOSO environment.
+* **Container-native application delivery**: RHOSO is delivered by using a container-native approach that spans the Red Hat OpenShift Container Platform (RHOCP) and RHEL platforms to deliver a container-native RHOSO deployment.
+* **RHOCP-hosted services**: RHOCP hosts infrastructure services and RHOSO controller services by using RHOCP Operators to provide lifecycle management.
+* **Ansible-managed RHEL-hosted service**: RHOSO workloads run on RHEL nodes that are managed by a dedicated DataPlane Operator. The DataPlane Operator runs Ansible jobs to configure the RHEL data plane nodes, such as the Compute nodes. RHOCP manages provisioning, DNS, and configuration management.
+* **Installer-provisioned infrastructure**: The RHOSO installer enables installer-provisioned infrastructure that uses RHOSO bare-metal machine management to provision the Compute nodes for the RHOSO cloud.
+* **User-provisioned infrastructure**: If you have your own machine ingest and provisioning workflow, you can use the RHOSO pre-provisioned model to add your pre-provisioned hardware into your RHOSO environment, while receiving the benefits of a container-native workflow.
++ **Hosted RHOSO client**: RHOSO provides a host openstackclient pod that is preconfigured with administrator access to the deployed RHOSO environment.
 
 . Review the pods in the **openstack-operators** namespace:
 +
